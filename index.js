@@ -17,6 +17,7 @@ app.use(cookieParser());
 const session = require('express-session');
 app.use(session({ secret: "tapjam" }));
 const things = require('./things.js');
+const router = require('./routes/user.js');
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -30,6 +31,7 @@ var personSchema = mongoose.Schema({
 var Person = mongoose.model("Person", personSchema);
 
 app.use('/things', things);
+app.use('/user', router);
 //signup view
 app.get('/signup', (req, res) => {
     res.render('signup');
